@@ -1,0 +1,104 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'ups_front/main.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPS</title>
+    <style type="text/css">
+        a:hover {
+            text-decoration: none;
+        }
+        .logo {
+            display: inline-block;
+            vertical-align: top;
+            width: 55px;
+            height: 55px;
+            margin-right: 20px;
+            margin-top: 15px;    /* if you want it vertically middle of the navbar. */
+        }
+    </style>
+</head>
+
+
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top mb-4"> 
+                <div><img class = "logo" src = "https://cdn.iconscout.com/icon/free/png-256/ups-3630313-3030888.png" alt="ups_logo"/></div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"> <span
+                        class="navbar-toggler-icon"></span> </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active mr-4"> <a class="nav-link"><span class="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
+                    <form class="form-inline mt-2 mt-md-0">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="button"><a
+                                href="{% url 'loginusers' %}" style='color:white'>Login</a></button>
+                    </form>
+                </div>
+            </nav>
+        </header>
+        <main role="main" class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% if messages %}
+                    {% for msg in messages %}
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ msg.message }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    <center>
+                        <h3>Search Your Package</h3>
+                    </center>
+
+                    <form action="{% url 'ups-trackresult' %}" method="post">
+                        <!--form提交的信息转到insertusers的网址-->
+                        {% csrf_token %}
+                        <table width="600" border="0" class="table">
+                            <tr>
+                                <br>
+                                <td>
+                                    <h5>Tracking Number:</h5>
+                                </td>
+                                <td><input type="text" name="package_id" /></td>
+
+                            </tr>
+
+
+                            <tr>
+                                <td colspan="2" align="center">
+                                    <br>
+                                    <input type="submit" value="Search" />
+                                    <!-- <button type="button" value="Search"></button> -->
+                                    <!-- <input type="reset" value="重置"/> -->
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    </body>
+
+</html>

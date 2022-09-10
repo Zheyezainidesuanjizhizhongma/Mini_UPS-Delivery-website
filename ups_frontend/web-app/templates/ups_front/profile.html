@@ -1,0 +1,148 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'ups_front/main.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPS</title>
+    <style type="text/css">
+        a:hover {
+            text-decoration: none;
+        }
+        .logo {
+            display: inline-block;
+            vertical-align: top;
+            width: 55px;
+            height: 55px;
+            margin-right: 20px;
+            margin-top: 15px;    /* if you want it vertically middle of the navbar. */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top mb-4"> 
+            <div><img class = "logo" src = "https://cdn.iconscout.com/icon/free/png-256/ups-3630313-3030888.png" alt="ups_logo"/></div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"> <span
+                    class="navbar-toggler-icon"></span> </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active mr-4"> <a class="nav-link"><span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+                <form class="form-inline mt-2 mt-md-0">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="button"><a href="{% url 'loginusers' %}"
+                            style='color:white'>Logout</a></button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="content-section">
+                    <h3>Navigation Bar</h3>
+                    <p class='text-muted'>Track packages or provide feedback
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-light"><a href="{% url 'ups-home' %}"
+                                style="color: rgba(59, 144, 229, 0.991);">Home</a></li>
+                        <li class="list-group-item list-group-item-light"><a href="{% url 'ups-package' %}"
+                                style="color: rgb(56, 92, 236);">Your Packages</a></li>
+                        <li class="list-group-item list-group-item-light"><a href="{% url 'ups-feedback' %}"
+                                style="color: rgb(93, 18, 232);">Feedback</a></li>
+                        <li class="list-group-item list-group-item-light"><a href="{% url 'ups-cost' %}"
+                                style="color: rgb(135, 57, 223);">Caculate shipping cost</a></li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-8">
+                {% if messages %}
+                {% for msg in messages %}
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>{{ msg.message }}</strong>
+                </div>
+                {% endfor %}
+                {% endif %}
+                <h3>My Profile</h3>
+
+                <head>
+                    <title></title>
+                    <style type="text/css">
+                        table {
+                            border-collapse: collapse;
+                            margin: 0 auto;
+                            text-align: center;
+                        }
+
+                        table td,
+                        table th {
+                            border: 1px solid #cad9ea;
+                            color: #666;
+                            height: 30px;
+                        }
+
+                        table thead th {
+                            background-color: #CCE8EB;
+                            width: 100px;
+                        }
+
+                        table tr:nth-child(odd) {
+                            background: #fff;
+                        }
+
+                        table tr:nth-child(even) {
+                            background: #F5FAFA;
+                        }
+                    </style>
+                </head>
+
+                <body>
+                    <table table align="center" width="800" border="30" class="table table-bordered">
+                        <tr>
+                            <th align="center">Username</th>
+                            <th align="center">Email</th>
+                        </tr>
+                        <tr>
+                            <td align="center">{{ username }}</td>
+                            <td align="center">{{ email }}</td>
+                            <!-- <form method="post" action="{% url 'ups-home' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="uname" value="{{package_ob.destination_x}}">
+                                <input type="submit" value="Edit">
+                            </form> -->
+                            </td>
+                        </tr>
+                        </br>
+                        </br>
+                    </table>
+                </body>
+
+
+
+            </div>
+        </div>
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+Email Sending and Destination Change Notification
+When the users change destination of their product, they will see a message on the website to confirm this and receive email for the updated destination
+
+Feedback and Profile
+The users can grade and write comments for UPS as well as view their feedback history. They can also view their profile when they are in home page.
+
+Calculate Shipping Cost
+By entering weight and distance, the users can calculate shipping cost of a package.
+
+UI Design
+Navigation Bar: We have a navigation bar to guide the user to use different functionalities.
+message Bar: We provide users with messages when they operate to give them better user experience.
+
